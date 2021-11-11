@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "macs_vubot"
+version = "0.1.0"
+description = "A simple bot for the MaCS discord server"
+authors = ["Minigrim0 <grimauflorent@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+"discord.py" = "^1.7.3"
+discord-py-slash-command = "^3.0.1"
+hereby = "^0.3.1"
+coloredlogs = "^15.0.1"
+
+[tool.poetry.dev-dependencies]
+pylint = "latest"
+black = "^21.10b0"
+rope = "^0.21.1"
+isort = "^5.10.1"
+
+[tool.pylint.basic]
+const_naming_style = "UPPER_CASE"
+class_naming_style = "PascalCase"
+function_naming_style = "camelCase"
+method_naming_style = "snake_case"
+
+[tool.pylint.format]
+max-line-length = 119
+
+[tool.pylint.design]
+min-public-methods = 0
+
+[tool.pylint.messages-control]
+disable = [
+    "consider-using-f-string",
+    "no-member",
+    "missing-module-docstring",
+    "unspecified-encoding",
+    "assigning-non-slot"
+]
+
+[tool.black]
+line-length = 119
+exclude = '^.git'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
