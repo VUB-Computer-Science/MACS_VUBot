@@ -1,9 +1,13 @@
-import discord
+import logging
 
+import discord
+import emoji
+from discord import MessageType
+from discord.ext import commands
 from discord_slash import SlashCommand
 
-from src.parser import parse_command
 from models.command_registry import CommandRegistry
+from src.parser import parse_command
 
 
 class MaxVUBot(commands.Bot):
@@ -48,3 +52,24 @@ class MaxVUBot(commands.Bot):
             params = await parse_command(message)
             command = self.registry.get(params["command"]["command"])
             await command(**params)
+
+    async def on_raw_reaction_add(self, payload):
+        """Callback for reaction adding non chache-dependent"""
+        if emoji.demojize(str(payload.emoji)) == ":pushpin:":
+            logging.info("pinning message")
+            channel = self.get_channel(payload.channel_id)
+            message = await channel.fetch_message(payload.message_id)
+            if message.type == MessageType.default:
+                await message.pin(reason=f"Pinned by {payload.member}")
+            else:
+                logging.info(f"Tried to ping message of type {message.type}")
+                await channel.send(f"{payload.member.mention} I can't pin system messages !")
+
+    async def on_raw_reaction_remove(self, payload):
+        """Callback for reaction removing non chache-dependent"""
+        if emoji.demojize(str(payload.emoji)) == ":pushpin:":
+            logging.info(f"Triggered the unpinning of message {payload.message_id}")
+            channel = self.get_channel(payload.channel_id)
+            message = await channel.fetch_message(payload.message_id)
+            if message.type == MessageType.default:
+                await message.unpin()
