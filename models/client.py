@@ -6,13 +6,13 @@ from src.parser import parse_command
 from models.command_registry import CommandRegistry
 
 
-class MaxVUBot(discord.Client):
+class MaxVUBot(commands.Bot):
     """MaxVUBot's client"""
 
     instance = None
 
     @staticmethod
-    def getInstance():
+    def get_instance():
         """Singleton Pattern"""
         if MaxVUBot.instance is None:
             MaxVUBot()

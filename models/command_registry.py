@@ -7,7 +7,7 @@ class CommandRegistry:
     instance = None
 
     @staticmethod
-    def getInstance():
+    def get_instance():
         """Returns the instance of the singleton
         Returns:
             CommandRegistry: The instance
@@ -16,18 +16,19 @@ class CommandRegistry:
             CommandRegistry()
         return CommandRegistry.instance
 
-    def __init__(self, func=None):
+    def __init__(self):
         if CommandRegistry.instance is not None:
             raise Exception("This class is a singleton")
         CommandRegistry.instance = self
 
         self.commands = []
 
-    def register(self, *args, **kwargs) -> callable:
+    def register(self, **kwargs) -> callable:
         """Decorator used to register a command in the registry, used to list all available commands
         Returns:
             callable: The decorator in itself
         """
+
         def decorator(fun: callable):
             """The decorator in  itself
             Args:
@@ -44,6 +45,7 @@ class CommandRegistry:
                 await self.func(*args, **kwargs)
 
             return wrapper
+
         return decorator
 
     def get(self, command: str) -> callable:
