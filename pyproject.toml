@@ -11,18 +11,20 @@ python = "^3.9"
 discord-py-slash-command = "^3.0.1"
 hereby = "^0.3.1"
 coloredlogs = "^15.0.1"
+emoji = "^1.6.1"
 
 [tool.poetry.dev-dependencies]
-pylint = "latest"
 black = "^21.10b0"
 rope = "^0.21.1"
 isort = "^5.10.1"
+flake8 = "^4.0.1"
 
 [tool.pylint.basic]
 const_naming_style = "UPPER_CASE"
 class_naming_style = "PascalCase"
 function_naming_style = "camelCase"
 method_naming_style = "snake_case"
+module_naming_style = "any"
 
 [tool.pylint.format]
 max-line-length = 119
