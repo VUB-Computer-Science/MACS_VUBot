@@ -1,4 +1,5 @@
 import re
+
 import discord
 
 from exceptions.bad_format_exception import BadFormatException
@@ -29,5 +30,5 @@ async def parse_command(command: discord.Message) -> dict:
         "guild": command.guild,
         "channel": command.channel,
         "command": command_dict,
-        "initial": command
+        "initial": command,
     }
