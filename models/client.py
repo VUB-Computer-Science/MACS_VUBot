@@ -20,25 +20,30 @@ class MaxVUBot(discord.Client):
 
     def __init__(self):
         if MaxVUBot.instance is not None:
-            raise RuntimeError(
-                f"Trying to instanciate a second object of {__class__}")
+            raise RuntimeError(f"Trying to instanciate a second object of {__class__}")
         MaxVUBot.instance = self
-        super().__init__()
+
+        intents = discord.Intents.default()
+        intents.members = True
+        intents.presences = True
+        intents.reactions = True
+
+        super().__init__(command_prefix="$", intents=intents)
 
         import src.commands  # NOQA
 
         self.slash = SlashCommand(self, sync_commands=True)
-        self.registry = CommandRegistry.getInstance()
+        self.registry = CommandRegistry.get_instance()
 
     async def on_ready(self):
-        """This is called when the connection to disord's API has succeed"""
-        print(f"Logged on as {self.user}!")
+        """This is called when the connection to disord's API is established"""
+        logging.info(f"Logged on as {self.user}!")
+        await self.change_presence(
+            status=discord.Status.idle, activity=discord.Game("Sorting out how to make new friends")
+        )
 
     async def on_message(self, message: discord.Message):
-        """Called when a message is sent womewhere the bot can access
-        Args:
-            message (discord.Message): The message with its metadata
-        """
+        """Called when a message is sent womewhere the bot can access"""
         if message.content and message.content[0] == "$":
             params = await parse_command(message)
             command = self.registry.get(params["command"]["command"])
