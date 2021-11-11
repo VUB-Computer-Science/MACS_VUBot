@@ -46,13 +46,6 @@ class MaxVUBot(commands.Bot):
             status=discord.Status.idle, activity=discord.Game("Sorting out how to make new friends")
         )
 
-    async def on_message(self, message: discord.Message):
-        """Called when a message is sent womewhere the bot can access"""
-        if message.content and message.content[0] == "$":
-            params = await parse_command(message)
-            command = self.registry.get(params["command"]["command"])
-            await command(**params)
-
     async def on_raw_reaction_add(self, payload):
         """Callback for reaction adding non chache-dependent"""
         if emoji.demojize(str(payload.emoji)) == ":pushpin:":

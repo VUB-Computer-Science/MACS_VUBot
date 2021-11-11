@@ -5,6 +5,7 @@ import coloredlogs
 from hereby import Here
 
 from models.client import MaxVUBot
+from models.cog import CommandCog
 
 if __name__ == "__main__":
     here = Here(__file__)
@@ -21,5 +22,5 @@ if __name__ == "__main__":
         logging.error("No API key found ! quitting")
     else:
         client = MaxVUBot.get_instance()
-
+        client.add_cog(CommandCog())
         client.run(API_KEY)
