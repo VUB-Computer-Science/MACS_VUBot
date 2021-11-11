@@ -7,7 +7,6 @@ from discord.ext import commands
 from discord_slash import SlashCommand
 
 from models.command_registry import CommandRegistry
-from src.parser import parse_command
 
 
 class MaxVUBot(commands.Bot):
@@ -33,8 +32,6 @@ class MaxVUBot(commands.Bot):
         intents.reactions = True
 
         super().__init__(command_prefix="$", intents=intents)
-
-        import src.commands  # NOQA
 
         self.slash = SlashCommand(self, sync_commands=True)
         self.registry = CommandRegistry.get_instance()

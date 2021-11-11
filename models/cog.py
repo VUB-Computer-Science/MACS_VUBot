@@ -1,5 +1,4 @@
 from discord.ext import commands
-from sys import argv
 
 from discord.ext.commands import Context
 from models.client import MaxVUBot

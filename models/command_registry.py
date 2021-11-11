@@ -1,6 +1,3 @@
-from src.command_wrapper import CommandWrapper as Command
-
-
 class CommandRegistry:
     """The singleton responsible of holding command informations and callables"""
 
