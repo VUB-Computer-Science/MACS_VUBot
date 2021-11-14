@@ -15,6 +15,7 @@ class CommandCog(commands.Cog):
             message_reference.message_id
         )
         await message_to_pin.pin(reason=f"Pinned by {ctx.author}")
+        await ctx.message.delete(delay=3)  # Deletes the request to pin after 3 seconds on command success
 
     @commands.command()
     async def pls_unpin(self, ctx: Context):
@@ -26,3 +27,4 @@ class CommandCog(commands.Cog):
             message_reference.message_id
         )
         await message_to_pin.unpin()
+        await ctx.message.delete(delay=3)  # Deletes the request to pin after 3 seconds on command success
