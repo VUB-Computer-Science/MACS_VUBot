@@ -57,7 +57,14 @@ class CommandCog(commands.Cog):
             await ctx.reply("Your Music Of The Day is not a valid url")
             return
 
+        # Check that the environment variable is set
+        if self.ENVIRONMENT is not None and self.ENVIRONMENT.get("MOTD_CHANNEL", None) is None:
+            await ctx.reply("The MOTD channel is not set up, please contact the bot host")
+            return
+
+        motd_channel = ctx.guild.get_channel(self.ENVIRONMENT["MOTD_CHANNEL"])  # MOTD channel
+
         # Change topic, send a confirmation message and delete the command after 3 seconds
-        await ctx.channel.edit(topic=f"MOTD: {new_motd} proposed by {ctx.message.author.mention}", reason=f"motd changed by {ctx.author}")
+        await motd_channel.edit(topic=f"MOTD: {new_motd} proposed by {ctx.message.author.mention}", reason=f"motd changed by {ctx.author}")
         await ctx.send(f"{ctx.message.author.mention}; You changed the motd to {new_motd} !")
         await ctx.message.delete(delay=3)  # Deletes the motd request after 3 seconds
