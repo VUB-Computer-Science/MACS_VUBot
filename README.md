@@ -25,6 +25,7 @@ the file should look like :
 ```json
 {
     "API_KEY": "YOUR_API_KEY_HERE"
+    "MOTD_CHANNEL": "The channel ID where the MOTD will be posted"
 }
 ```
 
