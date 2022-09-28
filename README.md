@@ -1,9 +1,9 @@
-# MAX Vubot
+# MAX Vubot 🤖
 
 A simple collaborative bot for the VUB's computer science master's discord.
 
-## Development
-This project requires poetry python package manager to be installed.
+## Development 🛠
+This project requires the *poetry* python package manager to be installed.
 
 Once the repository is cloned, simply run
 ```bash
