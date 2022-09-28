@@ -8,6 +8,9 @@ from models.client import MaxVUBot
 
 
 class CommandCog(commands.Cog):
+    def __init__(self, ENVIRONMENT: list = None):
+        self.ENVIRONMENT = ENVIRONMENT
+
     @commands.command()
     async def pls_pin(self, ctx: Context):
         message_reference: Optional[discord.MessageReference] = ctx.message.reference

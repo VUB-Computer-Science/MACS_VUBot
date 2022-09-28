@@ -16,11 +16,12 @@ if __name__ == "__main__":
     )
 
     with open(here.abspath(".env.json")) as key:
-        API_KEY = json.load(key).get("API_KEY", None)
+        ENVIRONMENT = json.load(key)
+        API_KEY = ENVIRONMENT.get("API_KEY", None)
 
     if API_KEY is None:
         logging.error("No API key found ! quitting")
     else:
         client = MaxVUBot.get_instance()
-        client.add_cog(CommandCog())
+        client.add_cog(CommandCog(ENVIRONMENT=ENVIRONMENT))
         client.run(API_KEY)
