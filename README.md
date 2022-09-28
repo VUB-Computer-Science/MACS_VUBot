@@ -27,3 +27,6 @@ the file should look like :
     "API_KEY": "YOUR_API_KEY_HERE"
 }
 ```
+
+## Contributing 🤝
+Contributions are welcome! Feel free to open an issue or a pull request. Two templates are provided for both cases, make sure to follow them to make the contribution as complete as possible.
