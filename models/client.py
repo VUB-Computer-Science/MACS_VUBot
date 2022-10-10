@@ -32,7 +32,6 @@ class MaxVUBot(commands.Bot):
         super().__init__(command_prefix="$", intents=intents)
 
         self.slash = SlashCommand(self, sync_commands=True)
-        self.registry = CommandRegistry.get_instance()
 
     async def on_ready(self):
         """This is called when the connection to disord's API is established"""
