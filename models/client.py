@@ -6,8 +6,6 @@ from discord import MessageType
 from discord.ext import commands
 from discord_slash import SlashCommand
 
-from models.command_registry import CommandRegistry
-
 
 class MaxVUBot(commands.Bot):
     """MaxVUBot's client"""
