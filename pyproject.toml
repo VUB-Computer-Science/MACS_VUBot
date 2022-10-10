@@ -17,7 +17,7 @@ emoji = "^1.6.1"
 black = "^21.10b0"
 rope = "^0.21.1"
 isort = "^5.10.1"
-flake8 = "^4.0.1"
+pyproject-flake8 = "^5.0.4"
 
 [tool.pylint.basic]
 const_naming_style = "UPPER_CASE"
@@ -26,20 +26,8 @@ function_naming_style = "camelCase"
 method_naming_style = "snake_case"
 module_naming_style = "any"
 
-[tool.pylint.format]
+[tool.flake8]
 max-line-length = 119
-
-[tool.pylint.design]
-min-public-methods = 0
-
-[tool.pylint.messages-control]
-disable = [
-    "consider-using-f-string",
-    "no-member",
-    "missing-module-docstring",
-    "unspecified-encoding",
-    "assigning-non-slot"
-]
 
 [tool.black]
 line-length = 119

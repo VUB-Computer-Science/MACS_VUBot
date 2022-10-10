@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     coloredlogs.install()
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.INFO,
     )
 
     with open(here.abspath(".env.json")) as key:
@@ -24,4 +24,5 @@ if __name__ == "__main__":
     else:
         client = MaxVUBot.get_instance()
         client.add_cog(CommandCog(ENVIRONMENT=ENVIRONMENT))
+        logging.info(f"Starting application with env vars: {', '.join(ENVIRONMENT.keys())}")
         client.run(API_KEY)
