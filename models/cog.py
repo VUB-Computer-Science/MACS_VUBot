@@ -60,7 +60,7 @@ class CommandCog(commands.Cog):
         last_change = os.environ.get("LAST_MOTD_CHANGE", None)
         if last_change is not None:
             last_change = datetime.datetime.fromisoformat(last_change)
-            if datetime.datetime.now().day() == last_change.day():
+            if datetime.datetime.now().day == last_change.day and datetime.datetime.now().month == last_change.month and datetime.datetime.now().year == last_change.year:
                 logger.error("The command motd was used twice in the same day")
                 await ctx.reply("You can only change the topic once a day")
                 return
